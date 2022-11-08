@@ -2,6 +2,9 @@ start mongoDB - sudo systemctl start mongod
 check status - sudo systemctl status mongod
 stop mongoDB - sudo systemctl stop mongod
 restart mongoDB - sudo systemctl restart mongod
+activation: failed try - sudo rm -rf /tmp/mongodb-27017.sock
+
+
 
 start mongo
     .\mongo.exe

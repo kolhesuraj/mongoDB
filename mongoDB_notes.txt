@@ -25,12 +25,10 @@ db  - checks which database you are working currently
 show all database
     show database;
 
-<<<<<<< HEAD
 select database
     use <database-name>;
 
-=======
->>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
+
 create collection
     db.createCollection(name, options);
 

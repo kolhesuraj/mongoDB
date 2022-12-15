@@ -1,0 +1,182 @@
+start mongoDB - sudo systemctl start mongod
+check status - sudo systemctl status mongod
+stop mongoDB - sudo systemctl stop mongod
+restart mongoDB - sudo systemctl restart mongod
+activation: failed try - sudo rm -rf /tmp/mongodb-27017.sock
+
+
+
+start mongo
+    .\mongo.exe
+    - first go to bin folder of mongoDB
+        path like(MongoDB\Server\6.2\bin)
+        it change on version basis.
+
+create database-
+    use <database-name>
+    - it create database with name who provided
+
+Drop database
+    db.dropDatabase();
+    - run it inside database
+
+db  - checks which database you are working currently
+
+show all database
+    show database;
+
+select database
+    use <database-name>;
+
+create collection
+    db.createCollection(name, options);
+
+Drop collection
+    db.<collection-name>.drop();
+
+Insert Data in collection
+    db.<collection-name>.insertOne({<data in key pair format>})
+
+    to insert many data at same time 
+        db.<collection-name>.insertMany([{<data in key pair format>}, 
+        {<data in key pair format>}])
+
+update Data in collection
+    db.<collecton-name>.update(
+        {<condition/key to check data >},
+        {
+            $set:{
+                key: value,
+            }
+        }
+    )
+
+    update - update records
+    updateOne - update one record
+    updateMany - update many records
+
+Read Data from document
+    find()
+        Finds all documents in collection
+        db.<collection-name>.find()
+        for find by condition
+            find({"key": "value"})
+
+    findOne()
+        Finds first document in collection
+        db.<collection-name>.findOne()
+
+    findOneAndReplace({"key":"value"} , <replacement-value>)
+        find first record and replace value
+
+    findOneAndDelete({"key" : "value"})
+        find document and delete it
+
+Delete documents from collection
+    deleteOne()
+        find all documents in collection
+        db.<collection-name>.deleteOne();
+
+    deleteMany({<condition>})
+        find multiple documents on based condition and delete it
+            db.<collection-name>.deleteMany({<condition>});
+        -when condition is empty or {} only then it delete all documents from collection
+
+Queries
+    it run like queries in sql database
+    this all run with mongo document methods
+    
+    $eq
+        - equal oprator
+        db.<collection-name>.find({"key" : { $ep : "value"}});
+
+    $lt
+        - less than
+        db.<collection-name>.find({"key" : { $lt : "value"}});
+
+
+    $lte
+        - less than equal
+        db.<collection-name>.find({"key" : { $lte : "value"}});
+
+
+    $gt
+        - greater than
+        db.<collection-name>.find({"key" : { $gt : "value"}});
+
+
+    $gte
+        - greater than equal
+        db.<collection-name>.find({"key" : { $gte : "value"}});
+
+
+    $and
+        - && oprator
+        db.<collection-name>.find({$and: [{<condition1>},{<condition2>}]});
+
+    $or
+        - || oprator
+        db.<collection-name>.find({$or:[{<condition1>}, {<condition2>}]});
+
+select specific feilds from documents/ Projection
+    db.<collection-name>.find({<condition>},{"key": 1})
+        returns the all documents and showing only selected feilds;
+        "key": 1 for select this feilds
+        "key" : 0 for deselect this feilds
+
+Aggregation
+    it support for few opration like min, max, sum, etc.
+    command for Aggregation
+        - db.<collection-name>.aggregation(pipeline, options);
+        #pipeline
+            -key elements in aggregation is called pipeline
+            -pipeline is in array formate
+        #options
+            -any documents can passed in options.
+
+    -stages/pipeline
+        $count
+        $group
+        $limit
+        $lookup
+        $match
+        $merge
+        $sort
+        $project
+        $unwind
+        $unset
+
+        ex db.<collection-name>.aggregate([{$sort: {"key": 1},{$limit: 10}}]);
+
+limit and skip 
+    limit()
+        - return limited records passed as agrument in limit();
+        db.<collection-name>.find().limit(<limit>);
+
+    skip()
+        -skip records from result
+        db.<collection-name>.find().skip(<skipLimit>);
+ 
+sorting in documents
+    sort({"key": 1/ -1})
+        db.<collection-name>.find().sort({"key":1});
+        1 for assending order
+        -1 for dessending order
+
+creating index on collection
+    defualt index as "_id"
+    we can add custom index
+        db.<collection-name>.ensureIndex({"key":1});
+
+# For backup and restore download mongodb database tools
+
+Back UP
+    #step 1 - create folder to save data
+    #step 2 - run command mongodump.exe to dump data
+    #step 3 - verify dumped data and folder 
+
+restore
+    #step 1 - ccheck the dump data
+    #step 2 - run command mongorestore.exe to restore data
+    #step 3 - verify dumped data and folder 
+

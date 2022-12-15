@@ -38,11 +38,7 @@ Drop collection
     db.<collection-name>.drop();
 
 Insert Data in collection
-<<<<<<< HEAD
     db.<collection-name>.insertOne({<data in key pair format>})
-=======
-    db.<collection-name>.insert({<data in key pair format>})
->>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
 
     to insert many data at same time 
         db.<collection-name>.insertMany([{<data in key pair format>}, 

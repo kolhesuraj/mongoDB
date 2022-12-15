@@ -1,6 +1,6 @@
 // const http = require('http');
 const express = require('express');
-<<<<<<< HEAD
+
 
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -48,23 +48,14 @@ app.use(async function (req, res, next) {
 app.listen(5000);
 
 
-=======
-const app = express();
-app.get('', (req,resp) => {
-    resp.send('This is home page');
-});
 
-app.get('/about', (req,resp) => {
-    resp.send('This is about page');
-})
->>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
 
 // http.createServer((req, resp) => {
 //     resp.write("response");
 //     resp.end();
-<<<<<<< HEAD
+
 // }).listen(4000);
-=======
+
 // }).listen(4000);
-app.listen(5000);
->>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
+// app.listen(5000);
+

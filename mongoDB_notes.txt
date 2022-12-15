@@ -25,9 +25,12 @@ db  - checks which database you are working currently
 show all database
     show database;
 
+<<<<<<< HEAD
 select database
     use <database-name>;
 
+=======
+>>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
 create collection
     db.createCollection(name, options);
 
@@ -35,7 +38,11 @@ Drop collection
     db.<collection-name>.drop();
 
 Insert Data in collection
+<<<<<<< HEAD
     db.<collection-name>.insertOne({<data in key pair format>})
+=======
+    db.<collection-name>.insert({<data in key pair format>})
+>>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
 
     to insert many data at same time 
         db.<collection-name>.insertMany([{<data in key pair format>}, 
@@ -146,7 +153,11 @@ Aggregation
         $unwind
         $unset
 
+<<<<<<< HEAD
         ex db.<collection-name>.aggregate([{$sort: {"key": 1},{$limit: 10}}]);
+=======
+        ex db.<collection-name>.aggregation([{$sort: {"key": 1},{$limit: 10}}]);
+>>>>>>> ed0aa9e54a5195e28239bd3b3f55400e2f0a8b09
 
 limit and skip 
     limit()

@@ -1,0 +1,1422 @@
+Q1) Write a java program to perform matrix multiplication on two dimensional array. Read matrices A and B from user and store the multiplication in matrix C.
+
+package assig1;
+
+import java.util.Scanner;
+public class matmul {
+public static void main(String[] args) {
+int x=2;
+int y=2;
+int a[][] = new int[x][y];
+int b[][] = new int[x][y];
+int c[][] = new int[x][y];
+Scanner sc = new Scanner(System.in); 
+	System.out.println("Enter Matrix A");
+	for(int i=0;i<x;i++) {
+		for(int j=0;j<y;j++) {
+			a[i][j] = sc.nextInt();
+		}
+	}
+	System.out.println("Enter Matrix B");
+	for(int i=0;i<x;i++) {
+		for(int j=0;j<y;j++) {
+			b[i][j] = sc.nextInt();
+		}
+	}
+
+System.out.println("Multiplication Of matrix A & B");
+for(int i=0;i<x;i++) 
+{
+	for(int j=0;j<y;j++) 
+	{
+		c[i][j] = 0;
+		for(int k=0;k<x;k++) 
+		{
+			c[i][j]+= a[i][k] * b[k][j];
+		}
+	System.out.print( c[i][j]+" ");
+	}
+	System.out.println();
+}
+}
+}
+---------------------------------------------------------------------------------------------------------
+Q2) Write a java program to store and display the transpose of matrix with 4 rows and 6 columns.
+
+package assig1;
+import java.util.Scanner;
+
+public class transpose {
+public static void main(String[] args) {
+	int x=2;
+	int y=2;
+int a[][] = new int[x][y];
+Scanner sc = new Scanner(System.in);
+System.out.println("Enter Matrix");
+for(int i=0;i<x;i++) {
+for(int j=0;j<y;j++) {
+a[i][j] = sc.nextInt();
+}
+}
+System.out.println("Entered Matrix is:");
+for(int i=0;i<x;i++) {
+for(int j=0;j<y;j++) {
+System.out.print(a[i][j] +" ");
+}
+System.out.println();
+}
+
+System.out.println("Transpose of Matrix:");
+for(int i=0;i<x;i++) {
+for(int j=0;j<y;j++) {
+System.out.print(a[j][i]+" ");
+}
+System.out.println();
+}
+}
+}
+---------------------------------------------------------------------------------------------------------
+Q3) Write a function in java to check if the number is Armstrong or not.Armstrong number is a number that is equal to the sum of cubes of its digits. For example 0, 1, 153, 370, 371 and 407 are the Armstrong numbers.
+
+package assig1;
+import java.util.Scanner;
+
+public class Armstrong {
+public static void main(String[] args) {
+int n,c,rem,arm=0;
+System.out.println("enter any number:");
+Scanner sc = new Scanner(System.in);
+n=sc.nextInt();
+c=n;
+while(n>0) {
+rem=n%10;
+arm=(rem*rem*rem)+arm;
+n=n/10;
+}
+if(c==arm) {
+System.out.println("This is a Armstrong number.");
+}
+else {
+System.out.println("Not armstrong nomber.");
+}
+}
+}
+----------------------------------------------------------------------------------------------------------
+Q4) Create two packages Trigonometry and Statistics. Write functions sine(angle), cosine(angle) and tan(angle)in Trigonometry package and mean(A[]),median(A[])and mode([]) in Statistics package. Access these functions and 
+display values calculated by all functions
+
+package Trigonometry;
+
+public class Trigonometry {
+    public static double sine(double angle) {
+        return Math.sin(Math.toRadians(angle));
+    }
+
+    public static double cosine(double angle) {
+        return Math.cos(Math.toRadians(angle));
+    }
+
+    public static double tan(double angle) {
+        return Math.tan(Math.toRadians(angle));
+    }
+}
+
+package Statistics;
+
+import java.util.Arrays;
+
+public class Statistics {
+    public static double mean(double[] A) {
+        double sum = 0.0;
+        for (double a : A) {
+            sum += a;
+        }
+        return sum / A.length;
+    }
+
+    public static double median(double[] A) {
+        Arrays.sort(A);
+        int n = A.length;
+        if (n % 2 == 0) {
+            return (A[n/2] + A[n/2]) / 2.0;
+        } else {
+            return A[n/2];
+        }
+    }
+
+    public static double mode(double[] A) {
+        int maxCount = 0;
+        double mode = Double.NaN;
+        for (double a : A) {
+            int count = 0;
+            for (double b : A) {
+                if (a == b) {
+                    count++;
+                }
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                mode = a;
+            }
+        }
+        return mode;
+    }
+}
+
+package Main;
+
+import Trigonometry.Trigonometry;
+import Statistics.Statistics;
+
+public class Main {
+    public static void main(String[] args) {
+        double angle = 45.0;
+        double[] A = {1.0, 2.0, 3.0, 4.0, 5.0};
+        
+        double sinValue = Trigonometry.sine(angle);
+        double cosValue = Trigonometry.cosine(angle);
+        double tanValue = Trigonometry.tan(angle);
+        
+        double meanValue = Statistics.mean(A);
+        double medianValue = Statistics.median(A);
+        double modeValue = Statistics.mode(A);
+        
+        System.out.println("sine(" + angle + ") = " + sinValue);
+        System.out.println("cosine(" + angle + ") = " + cosValue);
+        System.out.println("tan(" + angle + ") = " + tanValue);
+        
+        System.out.println("mean(A) = " + meanValue);
+        System.out.println("median(A) = " + medianValue);
+        System.out.println("mode(A) = " + modeValue);
+    }
+}
+------------------------------------------------------------------------------------------------------------
+
+Q1) Create Super class Employee(id,name). Inherit a class Manager(dept,salary) from Employee. ). Inherit a class SalesManager(bonus) from Manager. Add method salary in Manager and override in SalesManager. Create objects of Manager and SalesManager Class and display their all details along with salary.
+[NOTE : write default and parameterized constructors and toString() 
+method to display the objects]
+
+package Main;
+
+class Employee {
+    private int id;
+    private String name;
+
+    public Employee(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+}
+
+class Manager extends Employee {
+    private String dept;
+    private double salary;
+
+    public Manager(int id, String name, String dept, double salary) {
+        super(id, name);
+        this.dept = dept;
+        this.salary = salary;
+    }
+
+    public String getDept() {
+        return dept;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+}
+
+class SalesManager extends Manager {
+    private double bonus;
+
+    public SalesManager(int id, String name, String dept, double salary, double bonus) {
+        super(id, name, dept, salary);
+        this.bonus = bonus;
+    }
+
+    @Override
+    public double getSalary() {
+        return super.getSalary() + bonus;
+    }
+}
+
+public class Employee1 {
+    public static void main(String[] args) {
+        Manager manager = new Manager(1, "John Doe", "Sales", 50000.0);
+        manager.setSalary(60000.0);
+        System.out.println("Manager Details:");
+        System.out.println("ID: " + manager.getId());
+        System.out.println("Name: " + manager.getName());
+        System.out.println("Department: " + manager.getDept());
+        System.out.println("Salary: " + manager.getSalary());
+
+        SalesManager salesManager = new SalesManager(2, "Jane Smith", "Marketing", 60000.0, 10000.0);
+        System.out.println("\nSales Manager Details:");
+        System.out.println("ID: " + salesManager.getId());
+        System.out.println("Name: " + salesManager.getName());
+        System.out.println("Department: " + salesManager.getDept());
+        System.out.println("Salary: " + salesManager.getSalary());
+    }
+}
+---------------------------------------------------------------------------------------------------
+Q2) Write a program to create a super class Account(acno, name, bal). Inherit Savings(min_bal, tran_limit,int_rate) and Current(min_bal). Write withdraw() and deposit() functions. Check the number of 
+transactions during withdraw for savings account.
+[NOTE : write default and parameterized constructors and toString() method to display the objects]
+
+package Account;
+
+import java.util.Scanner;
+
+class Account {
+    int acno;
+    String name;
+    double bal;
+
+    Account(int acno, String name, double bal) {
+        this.acno = acno;
+        this.name = name;
+        this.bal = bal;
+    }
+
+    void deposit(double amount) {
+        bal += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    void withdraw(double amount) {
+        bal -= amount;
+        System.out.println("Withdrawn: " + amount);
+    }
+
+    public String toString() {
+        return "Account Number: " + acno + ", Name: " + name + ", Balance: " + bal;
+    }
+}
+
+class Savings extends Account {
+    double min_bal;
+    int tran_limit;
+    double int_rate;
+    int tran_count = 0;
+
+    Savings(int acno, String name, double bal, double min_bal, int tran_limit, double int_rate) {
+        super(acno, name, bal);
+        this.min_bal = min_bal;
+        this.tran_limit = tran_limit;
+        this.int_rate = int_rate;
+    }
+
+    void withdraw(double amount) {
+        if (bal - amount >= min_bal) {
+            bal -= amount;
+            tran_count++;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient balance!");
+        }
+    }
+
+    public String toString() {
+        return "Savings Account: " + super.toString() + ", Minimum Balance: " + min_bal + ", Transaction Limit: " + tran_limit + ", Interest Rate: " + int_rate;
+    }
+}
+
+class Current extends Account {
+    double min_bal;
+
+    Current(int acno, String name, double bal, double min_bal) {
+        super(acno, name, bal);
+        this.min_bal = min_bal;
+    }
+
+    void withdraw(double amount) {
+        if (bal - amount >= min_bal) {
+            bal -= amount;
+            System.out.println("Withdrawn: " + amount);
+        } else {
+            System.out.println("Insufficient balance!");
+        }
+    }
+
+    void deposit(double amount) {
+        bal += amount;
+        System.out.println("Deposited: " + amount);
+    }
+
+    public String toString() {
+        return "Current Account: " + super.toString() + ", Minimum Balance: " + min_bal;
+    }
+}
+
+public class Account2 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        
+        Savings s = new Savings(101, "John", 5000, 1000, 3, 0.05);
+        Current c = new Current(102, "Jane", 8000, 5000);
+        
+        System.out.println(s);
+        System.out.println(c);
+        
+        s.deposit(2000);
+        s.withdraw(1000);
+        s.withdraw(2000);
+        
+        c.deposit(12000);
+        c.withdraw(1000);
+        
+        System.out.println(s);
+        
+        input.close();
+    }
+}
+-------------------------------------------------------------------------------------------------------
+Q3) Write a program for abstract class Shape with abstract functions area() and volume(). Inherit class Cone and Cylinder from Shape. Create objects of Cone and Cylinder class and calculate area and volume for both.
+[NOTE : write default and parameterized constructors and toString() method to display the objects]
+
+package Shape;
+
+abstract class Shape {
+    protected double radius;
+    protected double height;
+
+    public Shape() {
+        this.radius = 0.0;
+        this.height = 0.0;
+    }
+
+    public Shape(double radius, double height) {
+        this.radius = radius;
+        this.height = height;
+    }
+
+    public abstract double area();
+
+    public abstract double volume();
+
+    public String toString() {
+        return "Radius: " + radius + ", Height: " + height;
+    }
+}
+
+class Cone extends Shape {
+    private double slantHeight;
+
+    public Cone() {
+        super();
+        this.slantHeight = 0.0;
+    }
+
+    public Cone(double radius, double height, double slantHeight) {
+        super(radius, height);
+        this.slantHeight = slantHeight;
+    }
+
+    public double area() {
+        return Math.PI * radius * (radius + slantHeight);
+    }
+
+    public double volume() {
+        return (1.0 / 3.0) * Math.PI * radius * radius * height;
+    }
+
+    public String toString() {
+        return "Cone - " + super.toString() + ", Slant Height: " + slantHeight;
+    }
+}
+
+class Cylinder extends Shape {
+    public Cylinder() {
+        super();
+    }
+
+    public Cylinder(double radius, double height) {
+        super(radius, height);
+    }
+
+    public double area() {
+        return 2.0 * Math.PI * radius * height + 2.0 * Math.PI * radius * radius;
+    }
+
+    public double volume() {
+        return Math.PI * radius * radius * height;
+    }
+
+    public String toString() {
+        return "Cylinder - " + super.toString();
+    }
+}
+
+public class Q3 {
+    public static void main(String[] args) {
+        Cone cone = new Cone(3.0, 5.0, 4.0);
+        Cylinder cylinder = new Cylinder(3.0, 5.0);
+
+        System.out.println(cone.toString());
+        System.out.println("Area: " + cone.area());
+        System.out.println("Volume: " + cone.volume());
+
+        System.out.println(cylinder.toString());
+        System.out.println("Area: " + cylinder.area());
+        System.out.println("Volume: " + cylinder.volume());
+    }
+}
+------------------------------------------------------------------------------------------------------
+Q4) Create an interface Polygon with abstract function area(). Create classes Square(side) and Rectangle(length, width) implemented from Polygon. Calculate area of both Square and Rectangle objects.
+
+package Abstract;
+
+interface Polygon {
+    abstract double area();
+}
+
+class Square implements Polygon {
+    int side;
+    Square(){}
+    Square(int s){
+    	side=s;
+    }
+    public String toString() {
+    	return "Side of Square is "+side; 
+    }	
+
+    public double area() {
+        return side * side;
+    }
+}
+
+class Rectangle implements Polygon {
+	int length,width;
+
+    Rectangle(){}
+    Rectangle(int l,int w){
+       length = l;
+       width =w;
+    }
+    public String toString() {
+    	return "Lenght of Rectangle is"+length+"\nWidth of Rectangle is"+width;
+    }
+
+    public double area() {
+        return length*width;
+    }
+}
+	
+public class Q4 {
+    public static void main(String[] args) {
+        Square s = new Square(4);
+        System.out.println(s);
+        System.out.println("Area of Square is "+s.area());
+
+        Rectangle R=new Rectangle(5,10);
+        System.out.println(R);
+        System.out.println("Area of Rectangle: " + R.area());
+    }
+}
+--------------------------------------------------------------------------------------------------------
+SET B
+
+Q1) Create an Arraylist of Days. Add 7 days to it. Display the size of the list and whole all days using iterator. Check if “Wed” is present in the Arraylist. Delete 3rd and 5th day.
+
+package Days;
+import java.util.*;
+
+ class AryList {
+	
+	public static void main(String[]args) {
+		
+		ArrayList<String> days=new ArrayList<String>();
+		
+		days.add("Sun");
+		days.add("Mon");
+		days.add("Tues");
+		days.add("Wed");
+		days.add("Thur");
+		days.add("Fri");
+		days.add("Sat");
+		
+		System.out.println("Size of ArrayList is "+days.size());
+		
+		for(String i:days){
+			System.out.println(i);
+		}
+		for(int i=0;i<days.size();i++) {
+			if(days.get(i).equals("Wed")) {
+				System.out.println("Value Found at postion"+i);
+			}
+		}
+		
+		days.remove(2);
+		System.out.println(days);
+		days.remove(4);
+		System.out.println(days);
+		
+	}
+}
+-----------------------------------------------------------------------------------------------------------
+Q2) Create a Linked list of Colors. Add 4 colors to the list. Display all colors using iterator. Add two new colors at the beginning of the linked list. Remove last color from the list
+
+package Color;
+import java.util.*;
+
+public class LinkList {
+	public static void main(String[]args) {
+		LinkedList<String>Colors=new LinkedList<>();
+		
+		Colors.add("Blue");
+		Colors.add("Green");
+		Colors.add("Pink");
+		Colors.add("Yellow");
+		
+		for(String s:Colors) {
+			System.out.println(s);
+		}
+		
+		Colors.addFirst("White");
+		Colors.addFirst("Black");
+		System.out.println(Colors);
+		
+		
+		Colors.removeLast();
+		System.out.println(Colors);
+	}
+}
+--------------------------------------------------------------------------------------------------------
+Q3) Create a Vector class. Print capacity of vector. Check if it is empty. Add 4 objects (Integer, Float, String, StringBuffer) to the vector. Display all elements of vector and delete all.
+
+package Vector;
+
+import java.util.Vector;
+
+public class MyVector {
+    public static void main(String[] args) {
+        Vector<Object> vector = new Vector<Object>(6);
+        
+     
+        System.out.println("Capacity: " + vector.capacity());
+
+        Integer integerObj = new Integer(1);
+        Float floatObj = new Float(2.0);
+        String stringObj = new String("Vector"); 
+        StringBuffer stringBufferObj = new StringBuffer("world");
+        vector.add(integerObj);
+        vector.add(floatObj);
+        vector.add(stringObj);
+        vector.add(stringBufferObj);
+        
+        if (vector.isEmpty()) {
+            System.out.println("Vector is empty.");
+        }else {
+        	System.out.println("Vecotr is not empty");
+        }
+
+       
+        System.out.println("All elements of vector:");
+        for (Object v : vector) {
+            System.out.println(v);
+        }
+
+        
+        vector.clear();
+        System.out.println("Vector after deleted:");
+        for (Object v : vector) {
+            System.out.println(v);
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------
+Q4)  Create a Hashtable named Student with <key,value> as <rollno, name>. Add records of 5 students to it. Display the elements of hashtable. Remove student with name “John”.
+
+package Hashtable;
+
+import java.util.Hashtable;
+
+public class StudentHashtable {
+    public static void main(String[] args) {
+        Hashtable<Integer, String> student = new Hashtable<Integer, String>();
+        
+       
+        student.put(1, "Rohit");
+        student.put(2, "Suraj");
+        student.put(3, "Ambadas");
+        student.put(4, "Amol");
+        student.put(5, "John");
+
+        
+        System.out.println("All elements of hashtable:");
+        for (int rollno : student.keySet()) {
+            System.out.println("Roll no: " + rollno + ", Name: " + student.get(rollno));
+        }
+
+        
+        student.values().removeIf(name -> name.equals("John"));
+
+
+        System.out.println("All elements of hashtable after removing John:");
+        for (int rollno : student.keySet()) {
+            System.out.println("Roll no: " + rollno + ", Name: " + student.get(rollno));
+        }
+    }
+}
+----------------------------------------------------------------------------------------------------------
+Q1) Create user defined exception class InvalidNameException. Name should not contain numbers and special symbol.
+
+package setA;
+import java.io.*;
+class InvalidNameException extends Exception{
+	String msg;
+	public InvalidNameException() {
+	}
+	public InvalidNameException(String str) {
+		super(str);
+	}
+}
+
+ class NameExcep{
+	String name;
+	int age;
+	public NameExcep() {}
+	public NameExcep(String n,int age)throws InvalidNameException{
+		int flag=0;
+		this.age=age;
+		
+		for(int i=0;i<n.length();i++) {
+			if(!((n.charAt(i)>=65 && n.charAt(i)<=90)||(n.charAt(i)>=97 && n.charAt(i)<=122)))
+					{ flag=1; break;}
+					
+		}
+		if(flag==0)
+			name=n;
+		else
+		{
+			throw(new InvalidNameException("Name should not contain special symbol or digit"));
+			
+		}
+	}
+	public String toString() {
+		return "Name "+name+" Age "+age;
+	}
+	public static void main(String[]args) {
+		try {
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Enter Name and Age");
+			String n=br.readLine();
+			int a=Integer.parseInt(br.readLine());
+			
+			NameExcep U=new NameExcep(n,a);
+			System.out.println(U);
+		}catch(IOException e) {
+			System.out.println(e);
+		}catch(InvalidNameException e) {
+			System.out.println(e);
+			
+		}
+	}
+	
+}
+----------------------------------------------------------------------------------------------------------
+Q2)  Create user defined exception class InvalidEmailException. Valid email should have domain names .com /.co.in /.org
+
+package setA;
+import java.io.*;
+class InvalidEmailException extends	Exception{
+	String msg;
+	public InvalidEmailException() {
+		
+	}
+	public InvalidEmailException(String str) {
+		super(str);
+	}
+}
+
+public class EmailExcep {
+	String name;
+	String Email;
+	public EmailExcep() {}
+	public EmailExcep(String n,String e)throws InvalidEmailException{
+		int flag=0;
+		
+		name=n;
+		
+		if(!((e.contains(".com"))||(e.contains(".org"))||(e.contains(".co.in"))||(e.contains(".in"))))
+			throw (new InvalidEmailException("Invalid Email id"));
+		else 
+			Email=e;
+	}
+	
+	public String toString() {
+		return "Name "+name+"Email "+Email; 
+	}
+	public static void main(String[]args) {
+		try { 
+			BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+			System.out.println("Enter Name and Email-id");
+			String n=br.readLine();
+			String email=br.readLine();
+			
+			EmailExcep U=new EmailExcep(n,email);
+			System.out.println(U);
+		}catch(IOException e) {
+			System.out.println(e);
+		}catch(InvalidEmailException e) {
+			System.out.println(e);
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------------------
+Q3) Create a text file “InFile.txt” containing information of student name and phone number. Read the content of file using DataInputStream class. Write the contents of this file to “OutFile.txt” using DataOutputStream class.
+
+package setB;
+
+	import java.io.*;
+	public class DataIOStream {
+	public static void main(String[] args)throws FileNotFoundException,IOException {
+	FileInputStream in = new FileInputStream(new File("C:\\Users\\admin\\eclipse-workspace\\Assignment3\\src\\setB\\InFile.txt"));
+	FileOutputStream out = new FileOutputStream(new File("C:\\Users\\admin\\eclipse-workspace\\Assignment3\\src\\setB\\OutFile.txt"));
+	DataInputStream din=null;
+	DataOutputStream dout = null;
+	//"D:\Data_Folder\Modern\Desktop\Java Practicals\Text Files\OutFile.txt"
+	try {
+	din = new DataInputStream(in);
+	dout = new DataOutputStream(out);
+	int c;
+	while ((c = din.read()) != -1) {
+	dout.write(c);
+	}
+	System.out.println("Successfully done");
+	} catch(Exception e){
+	e.printStackTrace();
+	}
+	finally {
+	}
+	if (din != null) {
+	din.close();
+	}
+	if (dout != null) {
+	dout.close();
+	}
+	}
+	}
+-------------------------------------------------------------------------------------------------------------
+Q2) Create a class Game with members game_name and no_of_players. Create 5 objects of Game class. Use serialization to add these objects to the file. Read the contents of the file and display all 5 objects.
+
+package setB;
+import java.io.*;
+
+class Game implements Serializable {
+
+String game_name;
+  int no_of_players;
+
+  public Game(String name, int players) {
+    this.game_name = name;
+    this.no_of_players = players;
+  }
+
+  public String toString() {
+    return "Game: " + game_name + ", Players: " + no_of_players;
+  }
+}
+
+public class GameClass {
+	public static void main(String[] args) {
+		Game g[] = new Game[5];
+		try {
+		
+		    g[0] = new Game("Football",22);
+		    g[1] = new Game("Basketball",9);
+		    g[2] = new Game("Cricket",11);
+		    g[3] = new Game("Hockey",7);
+		    g[4] = new Game("Baseball",8);
+		    
+		
+	FileOutputStream fout = new FileOutputStream("C:\\Users\\admin\\eclipse-workspace\\Assignment3\\src\\setB\\game.txt");
+		
+		   ObjectOutputStream out = new ObjectOutputStream(fout);
+		
+		   out.writeObject(g[0]);
+		   out.writeObject(g[1]);
+		   out.writeObject(g[2]);
+		   out.writeObject(g[3]);
+		   out.writeObject(g[4]);
+		
+		   out.flush();
+		   out.close();
+		   System.out.println("Serialization successful!");
+		   }  
+		   catch (Exception e){
+		   System.out.println(e);
+		   }
+		try {
+			Game G[] = new Game[5];
+
+   FileInputStream fin = new FileInputStream("C:\\Users\\admin\\eclipse-workspace\\Assignment3\\src\\setB\\game.txt");
+
+			   ObjectInputStream in = new ObjectInputStream(fin);
+
+			   G[0]= (Game)in.readObject();
+			   G[1]= (Game)in.readObject();
+			   G[2]= (Game)in.readObject();
+			   G[3]= (Game)in.readObject();
+			   G[4]= (Game)in.readObject();
+			   
+			   in.close();
+			   System.out.println(G[0]);
+			   System.out.println(G[1]);
+			   System.out.println(G[2]);
+			   System.out.println(G[3]);
+			   System.out.println(G[4]);
+			   }
+			   catch (Exception e){
+			   System.out.println(e);
+			   }
+			}
+		}
+---------------------------------------------------------------------------------------------------------
+Assignment-5
+Q1) Login password
+
+package setA;
+
+
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class LoginPass extends JFrame implements ActionListener{
+	JLabel l1,l2;
+	JTextField tf1;
+	JPasswordField pf;
+	JButton	login;
+	
+	LoginPass(){
+		l1=new JLabel("User Name");
+		l2=new JLabel("Password");
+		tf1=new JTextField(15);
+		pf=new JPasswordField(15);
+		login=new JButton("Login");
+		
+		setLayout(new FlowLayout());
+		setSize(300,300);
+		
+		add(l1);
+		add(tf1);
+		add(l2);
+		add(pf);
+		add(login);
+		
+		login.addActionListener(this);
+		
+		setVisible(true);
+		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		String s=e.getActionCommand();
+		if(s.equals("Login")) {
+			if((tf1.getText().equals("Rohit"))&&(pf.getText().equals("0002")))
+			{
+				JOptionPane.showMessageDialog(this,"Login Successful",
+						"VALID",JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+				JOptionPane.showMessageDialog(this,"Invalid username or password,please re-enter",
+						"ERROR",JOptionPane.ERROR_MESSAGE);
+			tf1.setText("");
+			pf.setText("");
+		}
+		}
+			public static void main(String[] args) {
+				new LoginPass();
+		}
+}
+-------------------------------------------------------------------------------------------------------
+Q2) Menu driven
+
+package setA;
+import java.awt.*;
+
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+public class MenuEg extends JFrame {
+
+	JMenuBar mb;
+	JMenu file, edit, search;
+	JMenuItem New, open, save;
+	JMenuItem cut, copy, paste;
+	JMenuItem find, replace;
+	
+	MenuEg(){
+		mb=new JMenuBar();
+		file=new JMenu("file");
+		edit=new JMenu("Edit");
+		search=new JMenu("search");
+		
+		New =new JMenuItem("New");
+		open =new JMenuItem("open");
+		save =new JMenuItem("save");
+		cut=new JMenuItem("Cut");
+		copy=new JMenuItem("Copy");
+		paste=new JMenuItem("Paste");
+		find=new JMenuItem("Find");
+		replace=new JMenuItem("Replace");
+		
+		setJMenuBar(mb);
+		
+		mb.add(file);
+		mb.add(edit);
+		mb.add(search);
+		
+		file.add(New);
+		file.add(open);
+		file.add(save);
+		
+		edit.add(cut);
+		edit.add(copy);
+		edit.add(paste);
+		
+		search.add(find);
+		search.add(replace);
+	   
+		setSize(300,300);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		}
+	  public static void main(String[]args) {
+		  new MenuEg();
+	  }
+}
+---------------------------------------------------------------------------------------------------------
+Q3) Units converter
+
+package setA;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+
+public class Conversion extends JFrame implements ActionListener {
+	JLabel m,cm;
+	JTextField tfm,tfcm;
+	JButton convert;
+	
+	Conversion(){
+		m=new JLabel("METER");
+		cm=new JLabel("CENTIMETER");
+		
+		tfm=new JTextField(15);
+		tfcm=new JTextField(15);
+		
+		convert=new JButton("CONVERT");
+		
+		setLayout(new FlowLayout());
+		
+		add(m);
+		add(tfm);
+		add(cm);
+		add(tfcm);
+		add(convert);
+		
+		convert.addActionListener(this);
+		
+		setSize(300,300);
+		setVisible(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	public void actionPerformed(ActionEvent e) {
+		String s=e.getActionCommand();
+		if(s.equals("CONVERT")) {
+			int n=Integer.parseInt(tfm.getText());
+			tfcm.setText(""+n*100);
+		}
+		
+	}
+	public static void main(String[]args) {
+		new Conversion();
+	}
+}
+---------------------------------------------------------------------------------------------------------
+Q1) Write a program to display information about the database and list all the tables in the database.
+(Use DatabaseMetaData). 
+
+package setb;
+import java.sql.*;
+class Databasemetadata{
+	
+public static void main(String args[]) throws Exception
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+	
+	DatabaseMetaData dbmd=(DatabaseMetaData) con.getMetaData();
+	
+	System.out.println("Database Name="+dbmd.getDatabaseProductName());
+	System.out.println("Database Version="+dbmd.getDatabaseProductVersion());
+	System.out.println("Database Driver Name="+dbmd.getDriverName());
+	
+	System.out.println("URL of Database="+dbmd.getURL());
+	System.out.println("Current UserName="+dbmd.getUserName());
+	
+	System.out.println("======Tables=====");
+	String t[]= {"TABLE"};
+	ResultSet rs=dbmd.getTables(null,null,null,t);
+	while(rs.next())
+		{
+		System.out.println(rs.getString("TABLE_NAME"));		
+		}
+	con.close();
+}
+}
+------------------------------------------------------------------------------------------------------------
+Q2) Write a program to display information about all columns in the DONAR table using ResultSetMetaData.
+
+package setb;
+import java.sql.*;
+class Resultsetmetadata
+{
+public static void main(String args[]) throws Exception
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+	Statement stmt= con.createStatement();
+	ResultSet rs=stmt.executeQuery("select *from Teacher"+"");
+	
+	ResultSetMetaData rsmd=rs.getMetaData();
+	int n=rsmd.getColumnCount();
+	System.out.println("No. of Columns="+n);
+	for(int i=1;i<=n;i++)
+	{
+		System.out.println("Column Number:"+i);
+		System.out.println("=============");
+		System.out.println("Column Number="+rsmd.getColumnName(i));
+		System.out.println("Column Type="+rsmd.getColumnTypeName(i));
+		System.out.println("Column Width="+rsmd.getColumnDisplaySize(i));
+		System.out.println("Column Presicion="+rsmd.getPrecision(i));
+		System.out.println("Is Currency="+rsmd.isCurrency(i));
+		System.out.println("Is Read-Only="+rsmd.isReadOnly(i));
+		System.out.println("Is Writable="+rsmd.isWritable(i));
+		System.out.println("Is Searchable="+rsmd.isSearchable(i));
+		System.out.println("Is Signed="+rsmd.isSigned(i));
+		
+		}
+		con.close();
+
+}
+}
+----------------------------------------------------------------------------------------------------------
+Q3) Create a BOOK table with fields book_id, book _name, book_publication, price. etc. Insert values in the table. Display all the details of the BOOK table in a tabular format on the screen. (using swing).
+
+package setb;
+
+import java.sql.*;
+
+
+public class Book {
+
+public static void main(String args[]) throws Exception
+{
+	Class.forName("com.mysql.cj.jdbc.Driver");
+	Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/testdb","root","");
+	Statement stmt= con.createStatement();
+    String query = "CREATE TABLE book (id INT NOT NULL, name VARCHAR(255) NOT NULL,publication VARCHAR(255) NOT NULL, price DECIMAL(10,2) NOT NULL, PRIMARY KEY (id))";
+	 stmt.executeUpdate(query);
+	 String insert = "INSERT INTO book (id,name, publication, price) VALUES (1, 'Java','modern collage', 200)";
+	 System.out.println("table created");
+
+	 stmt.executeUpdate(insert);
+	 System.out.println("data added");
+		con.close();
+
+}
+}
+-----------------------------------------------------------------------------------------------------------
+Q1) Design a servlet that provides information about a HTTP request from a client, such as IP address and browser type. The servlet also provides information about the server on which the servlet is running, such as the operating system type, and the names of currently loaded servlets.
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class demo
+ */
+@WebServlet("/demo")
+public class demo extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public demo() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		PrintWriter pw= response.getWriter();
+		pw.println("<h1>WELCOME</h1>");
+		pw.println("<h3>IP address:"+request.getRemoteAddr()+"</h3>");
+		pw.println("<h3>Brower Type:"+request.getHeader("user-agent")+"</h3>");
+		pw.println("<h3>HostName:"+request.getHeader("host")+"</h3>");
+		
+		final String userAgent=request.getHeader("User-Agent");
+		String OSType;
+		
+		if(userAgent==null || userAgent.isEmpty()) {
+			OSType="UNKNOWN";
+		}else if(userAgent.toLowerCase().contains("windows")) {
+			OSType="WINDOWS";
+		}else if(userAgent.toLowerCase().contains("mac")) {
+			OSType="MAC";
+		}else if(userAgent.toLowerCase().contains("x11")) {
+			OSType="LINUX";
+		}else if(userAgent.toLowerCase().contains("android")) {
+			OSType="ANDROID";
+		}else if(userAgent.toLowerCase().contains("iphone")) {
+			OSType="IPHONE";
+		}else {
+			OSType="UNKNOWN";
+		}
+		pw.println("<h3>OS Name: "+OSType+"</h3>");
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
+
+}
+---------------------------------------------------------------------------------------------------------
+Q2) Write a Servlet application for login page, which is check the username and password. If username and password are matched, display welcome message.
+
+
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class Login
+ */
+@WebServlet("/Login")
+public class Login extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Login() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+    // Replace this with your own logic for validating the username and password
+    private boolean isValidUser(String username, String password) {
+      return username.equals("rohit") && password.equals("0002");
+    }
+
+
+	  public void doGet(HttpServletRequest request, HttpServletResponse response)
+	    throws ServletException, IOException {
+
+	    // Get the username and password parameters from the request
+	    String username = request.getParameter("username");
+	    String password = request.getParameter("password");
+
+	    // Check if the username and password are valid
+	    if (isValidUser(username, password)) {
+	      // If they are, display a welcome message
+	      response.setContentType("text/html");
+	      PrintWriter out = response.getWriter();
+	      out.println("<html><body>");
+	      out.println("<h2>Welcome, " + username + "!</h2>");
+	      out.println("</body></html>");
+	    } else {
+	      // If they are not, display an error message
+	      response.setContentType("text/html");
+	      PrintWriter out = response.getWriter();
+	      out.println("<html><body>");
+	      out.println("<h2>Invalid username or password. Please try again.</h2>");
+	      out.println("</body></html>");
+	    }
+	  }
+}
+
+			----------  HTML CODE BELOW OF THIS PROGRAM-----------
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form method="get" action="Login">
+  <label>Username:</label>
+  <input type="text" name="username"><br>
+  <label>Password:</label>
+  <input type="password" name="password"><br>
+  <input type="submit" value="Login">
+</form>
+
+</body>
+
+</html>
+--------------------------------------------------------------------------------------------------------
+
+     JSPP:-
+
+Q1) Write a JSP program to display the details of COMPANY (Name, Location, Address, Email-id, Phone_no) in tabular form on browser.
+
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ page import="java.util.ArrayList" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Company Details</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+			padding: 5px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Company Details</h1>
+	<table>
+		<tr>
+			<th>Name</th>
+			<th>Location</th>
+			<th>Address</th>
+			<th>Email-id</th>
+			<th>Phone_no</th>
+		</tr>
+		<%
+			// Create a list of company details
+			ArrayList<String[]> companies = new ArrayList<String[]>();
+			companies.add(new String[]{"ABC Company", "New York", "123 Main St", "abc@example.com", "555-1234"});
+			companies.add(new String[]{"XYZ Inc", "San Francisco", "456 Market St", "xyz@example.com", "555-5678"});
+
+			// Loop through the list of companies and display their details in the table
+			for (String[] company : companies) {
+		%>
+		<tr>
+			<td><%= company[0] %></td>
+			<td><%= company[1] %></td>
+			<td><%= company[2] %></td>
+			<td><%= company[3] %></td>
+			<td><%= company[4] %></td>
+		</tr>
+		<%
+			}
+		%>
+	</table>
+</body>
+</html>
+----------------------------------------------------------------------------------------------------------
+Q2) Write a JSP program to display the details of PLAYER (Name, Game, No_Matches_played, Email-id) in tabular form on browser.
+
+<%@page import="java.sql.*"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Player Details</title>
+</head>
+<body>
+    <h1>Player Details</h1>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Game</th>
+            <th>No. of Matches Played</th>
+            <th>Email-id</th>
+        </tr>
+        <% 
+            // Establish database connection
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "");
+            
+            // Create SQL query to retrieve player details
+            String query = "SELECT name, game, no_matches_played, email_id FROM players";
+            PreparedStatement ps = con.prepareStatement(query);
+            
+            // Execute query and retrieve results
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+        %>
+            <tr>
+                <td><%= rs.getString("name") %></td>
+                <td><%= rs.getString("game") %></td>
+                <td><%= rs.getInt("no_matches_played") %></td>
+                <td><%= rs.getString("email_id") %></td>
+            </tr>
+        <% 
+            }
+            
+            // Close database connection
+            rs.close();
+            ps.close();
+            con.close();
+        %>
+    </table>
+</body>
+</html>
+
+
+
+	
+
+
+
+
+
+
+
+
